@@ -1,9 +1,10 @@
-import { octokit } from './client.js';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findLastIssueWithLabels = void 0;
+const client_js_1 = require("./client.js");
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-/** */
-export async function findLastIssueWithLabels(labels) {
-    // See https://docs.github.com/en/rest/reference/issues
-    const { data: [lastIssueFound] } = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+async function findLastIssueWithLabels(labels) {
+    const { data: [lastIssueFound] } = await client_js_1.octokit.request('GET /repos/{owner}/{repo}/issues', {
         headers: {
             accept: 'application/vnd.github.v3+json',
         },
@@ -18,3 +19,4 @@ export async function findLastIssueWithLabels(labels) {
     });
     return lastIssueFound;
 }
+exports.findLastIssueWithLabels = findLastIssueWithLabels;
