@@ -1,4 +1,4 @@
-name: 'Find latest issue'
+name: 'Find Last Issue'
 author: 'Micael Levi L. C.'
 description: 'GitHub Action to find and export the number of last updated issue whithin some repository that has given labels.'
 inputs:
