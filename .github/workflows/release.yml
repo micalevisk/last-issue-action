@@ -16,3 +16,5 @@ jobs:
         with:
           version: 16
       - uses: technote-space/release-github-actions@v7
+        with:
+          CLEAN_TARGETS: ".[!.]*,__tests__,docs,src,*.js,*.ts,*.json,*.lock,*.yml,*.yaml,LICENSE,README,dist"
