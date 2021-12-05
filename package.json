@@ -1,0 +1,33 @@
+{
+  "name": "last-issue-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to find and export the number of last updated issue that has given labels.",
+  "type": "module",
+  "author": "Micael Levi L. C. (https://micalevisk.github.io)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micalevisk/last-issue-action.git"
+  },
+  "keywords": [
+    "github-action",
+    "issue",
+    "last issue"
+  ],
+  "scripts": {
+    "prepack": "npm run build",
+    "build": "tsc -p .",
+    "watch/build": "tsc --watch -p .",
+    "clean": "rm -rf dist",
+    "start": "node dist",
+    "dev": "NODE_ENV=development node dist"
+  },
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@octokit/rest": "^18.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.11",
+    "dotenv": "^10.0.0",
+    "typescript": "^4.5.2"
+  }
+}

@@ -1,0 +1,18 @@
+name: 'Find latest issue'
+author: 'Micael Levi L. C.'
+description: 'GitHub Action to find and export the number of last updated issue whithin some repository that has given labels.'
+inputs:
+  labels:
+    description: 'Comma-separated label names that the issue must have.'
+    required: true
+outputs:
+  issue_number:
+    description: 'The number of the issue found, if any.'
+  has_found:
+    description: 'Response status. Will be `true` if some issue was found. `false` otherwise.'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  icon: 'crosshair'
+  color: 'purple'
