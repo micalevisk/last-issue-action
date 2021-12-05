@@ -1,3 +1,5 @@
+bundle
+
 # from https://next.yarnpkg.com/advanced/qa#which-files-should-be-gitignored
 .yarn/cache
 .yarn/unplugged

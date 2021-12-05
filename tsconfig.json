@@ -2,11 +2,12 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "types": ["node"],
-    "module": "ESNext",
+    "module": "CommonJS",
     "target": "ES2021",
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
+    "removeComments": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
