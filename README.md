@@ -23,7 +23,7 @@ Response status. Will be `true` if some issue was found. `false` otherwise.
 ## Example usage
 
 ```yaml
-uses: .github/actoins/find-latest-issue
+uses: micalevisk/find-last-issue
 with:
   labels: 'report,automated issue'
 env:
