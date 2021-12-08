@@ -8275,30 +8275,30 @@ exports.octokit = new rest_1.Octokit({
         debug: core.debug,
         info: core.info,
         warn: core.warning,
-        error: core.error
+        error: core.error,
     },
 });
 
 
 /***/ }),
 
-/***/ 5290:
+/***/ 416:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.findLastIssueWithLabels = void 0;
+exports.findLastIssueWith = void 0;
 const client_js_1 = __nccwpck_require__(9368);
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-async function findLastIssueWithLabels(labels) {
-    const { data: [lastIssueFound] } = await client_js_1.octokit.request('GET /repos/{owner}/{repo}/issues', {
+async function findLastIssueWith(labels, state) {
+    const { data: [lastIssueFound], } = await client_js_1.octokit.request('GET /repos/{owner}/{repo}/issues', {
         headers: {
             accept: 'application/vnd.github.v3+json',
         },
         owner,
         repo,
-        state: 'open',
+        state,
         labels: labels.join(','),
         sort: 'updated',
         direction: 'desc',
@@ -8307,7 +8307,7 @@ async function findLastIssueWithLabels(labels) {
     });
     return lastIssueFound;
 }
-exports.findLastIssueWithLabels = findLastIssueWithLabels;
+exports.findLastIssueWith = findLastIssueWith;
 
 
 /***/ }),
@@ -8337,29 +8337,73 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __importStar(__nccwpck_require__(2186));
-const find_last_issue_with_labels_1 = __nccwpck_require__(5290);
+const utils = __importStar(__nccwpck_require__(6883));
+const core_1 = __nccwpck_require__(416);
 async function main() {
-    try {
-        const labels = core.getInput('labels', { required: true, trimWhitespace: true }).split(',');
-        const latestReportIssue = await (0, find_last_issue_with_labels_1.findLastIssueWithLabels)(labels);
-        let hasFoundSome = false;
-        if (latestReportIssue) {
-            hasFoundSome = true;
-            core.setOutput('issue_number', latestReportIssue.number);
-        }
-        core.setOutput('has_found', hasFoundSome);
+    const inputs = {
+        labels: utils.getInputAsArray('labels', { required: true, trimWhitespace: true }),
+        state: utils.getInput('state', { required: false, trimWhitespace: true }) || 'open',
+    };
+    const latestReportIssue = await (0, core_1.findLastIssueWith)(inputs.labels, inputs.state);
+    let hasFoundSome = false;
+    if (latestReportIssue) {
+        hasFoundSome = true;
+        utils.setOutput('issue_number', latestReportIssue.number);
     }
-    catch (err) {
-        if (err instanceof Error) {
-            core.error(err.message);
-        }
-        core.setFailed('Something went wrong!');
-    }
+    utils.setOutput('has_found', hasFoundSome);
 }
 if (require.main === require.cache[eval('__filename')]) {
-    main();
+    main().catch((err) => {
+        if (err instanceof Error) {
+            utils.error(err.message);
+        }
+        utils.setFailed('Something went wrong!');
+    });
 }
+
+
+/***/ }),
+
+/***/ 6883:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.setOutput = exports.getInput = exports.getInputAsArray = exports.error = exports.setFailed = void 0;
+const core = __importStar(__nccwpck_require__(2186));
+var core_1 = __nccwpck_require__(2186);
+Object.defineProperty(exports, "setFailed", ({ enumerable: true, get: function () { return core_1.setFailed; } }));
+Object.defineProperty(exports, "error", ({ enumerable: true, get: function () { return core_1.error; } }));
+const getInputAsArray = (name, options) => core
+    .getInput(name, options)
+    .split(/[\n,]+/)
+    .map((value) => value.trim())
+    .filter((val) => val !== '');
+exports.getInputAsArray = getInputAsArray;
+const getInput = (name, options) => core.getInput(name, options);
+exports.getInput = getInput;
+const setOutput = (name, value) => core.setOutput(name, value);
+exports.setOutput = setOutput;
 
 
 /***/ }),
