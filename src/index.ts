@@ -1,31 +1,32 @@
-import * as core from '@actions/core';
+import * as utils from './utils';
 
-import { findLastIssueWithLabels } from './find-last-issue-with-labels';
+import { findLastIssueWith } from './core';
 
 async function main(): Promise<void> {
-  try {
-    const labels = core.getInput('labels', { required: true, trimWhitespace: true }).split(',');
+  const inputs = {
+    labels: utils.getInputAsArray('labels', { required: true, trimWhitespace: true }),
+    state: utils.getInput('state', { required: false, trimWhitespace: true }) || 'open',
+  };
 
-    const latestReportIssue = await findLastIssueWithLabels(labels);
+  const latestReportIssue = await findLastIssueWith(inputs.labels, inputs.state);
 
-    let hasFoundSome = false;
+  let hasFoundSome = false;
 
-    if (latestReportIssue) {
-      hasFoundSome = true;
-      core.setOutput('issue_number', latestReportIssue.number);
-    }
-
-    core.setOutput('has_found', hasFoundSome);
-  } catch(err) {
-    if (err instanceof Error) {
-      core.error(err.message);
-    }
-
-    core.setFailed('Something went wrong!');
+  if (latestReportIssue) {
+    hasFoundSome = true;
+    utils.setOutput('issue_number', latestReportIssue.number);
   }
+
+  utils.setOutput('has_found', hasFoundSome);
 }
 
 // Check if is running as a script
 if (require.main === module) {
-  main();
+  main().catch((err) => {
+    if (err instanceof Error) {
+      utils.error(err.message);
+    }
+
+    utils.setFailed('Something went wrong!');
+  });
 }

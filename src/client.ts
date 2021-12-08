@@ -7,6 +7,6 @@ export const octokit = new Octokit({
     debug: core.debug,
     info: core.info,
     warn: core.warning,
-    error: core.error
+    error: core.error,
   },
 });
