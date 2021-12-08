@@ -5,11 +5,16 @@ inputs:
   labels:
     description: 'Comma-separated label names that the issue must have.'
     required: true
+  state:
+    description: 'Issue state to filter by. Can be `"open"`, `"closed"` or `"all"`'
+    required: false
 outputs:
   issue_number:
     description: 'The number of the issue found, if any.'
   has_found:
     description: 'Response status. Will be `true` if some issue was found. `false` otherwise.'
+  is_closed:
+    description: 'Will be `true` if the found issue is closed. `false` otherwise.'
 runs:
   using: 'node16'
   main: 'bundle/index.js'

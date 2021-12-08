@@ -4,17 +4,18 @@ GitHub Action to find and output the number of last updated issue that has given
 
 ### Action inputs
 
-| Name            | Description                                                                                                                                                                                                                                                                                        | Default  |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| **\*** `labels` | Comma or newline-separated list of labels that the issue must have                                                                                                                                                                                                                                 |
-| `state`         | Issue state. Can be one of the following strings: <ul><li> <code>"open"</code>: if you want to look up for open issues only </li><li> <code>"closed"</code>: if you want to look up for closed issues only </li><li> <code>"all"</code>: if you want to look up for open or closed ones </li></ul> | `"open"` |
+| Name            | Description                                                                                                                                                                                                                                                                                                  | Default  |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| **\*** `labels` | Comma or newline-separated list of labels that the issue must have                                                                                                                                                                                                                                           |
+| `state`         | Issue state filter by. Can be one of the following strings: <ul><li> <code>"open"</code>: if you want to look up for open issues only </li><li> <code>"closed"</code>: if you want to look up for closed issues only </li><li> <code>"all"</code>: if you want to look up for open or closed ones </li></ul> | `"open"` |
 
 ### Action outputs
 
-| Name           | Description                                                                 |
-| -------------- | --------------------------------------------------------------------------- |
-| `issue_number` | The number of the issue found, if any.                                      |
-| `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise. |
+| Name           | Description                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `issue_number` | The number of the issue found, if any.                                                                                                                             |
+| `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
+| `is_closed`    | Will be `true` if the found issue is closed. The you can use `issue_number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
 
 ### Environment variables
 

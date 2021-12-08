@@ -8349,6 +8349,7 @@ async function main() {
     if (latestReportIssue) {
         hasFoundSome = true;
         utils.setOutput('issue_number', latestReportIssue.number);
+        utils.setOutput('is_closed', latestReportIssue.state === 'closed');
     }
     utils.setOutput('has_found', hasFoundSome);
 }
