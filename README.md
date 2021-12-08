@@ -24,8 +24,13 @@ GitHub Action to find and output the number of last updated issue that has given
 
 ## Example usage
 
+You can use this action along with [create-issue-from-file](https://github.com/peter-evans/create-issue-from-file) action, like:
+
 ```yaml
+# ...
+
 - name: Find the last open report issue
+  id: last_issue
   uses: micalevisk/find-last-issue@v1
   with:
     state: open
@@ -36,11 +41,17 @@ GitHub Action to find and output the number of last updated issue that has given
   env:
     ## Optional since it uses the `GITHUB_TOKEN` created by GitHub by default
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
 
-For third-party repositories, you can use the `GITHUB_REPOSITORY` environment variable:
+- run: echo ${{ steps.last_issue.outputs.issue_number }}
 
-```yaml
-env:
-  GITHUB_REPOSITORY: owner/repo_name
+- name: Update last updated report issue
+  if: ${{ steps.last_issue.outputs.has_found == 'true' }}
+  uses: peter-evans/create-issue-from-file@v3
+  with:
+    title: Foo
+    content-filepath: README.md
+    issue-number: ${{ steps.last_issue.outputs.issue_number }}
+    labels: |
+      report
+      automated issue
 ```
