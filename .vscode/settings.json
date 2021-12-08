@@ -3,7 +3,7 @@
   "prettier.enable": true,
   "prettier.configPath": "./.prettierrc",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "typescript.format.enable": true,
+  "typescript.format.enable": false,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "[typescript]": {
@@ -12,10 +12,13 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  }
 }
