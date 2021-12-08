@@ -11,10 +11,11 @@ GitHub Action to find and output the number of last updated issue that has given
 
 ### Action outputs
 
-| Name           | Description                                                                 |
-| -------------- | --------------------------------------------------------------------------- |
-| `issue_number` | The number of the issue found, if any.                                      |
-| `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise. |
+| Name           | Description                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `issue_number` | The number of the issue found, if any.                                                                                                                             |
+| `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
+| `is_closed`    | Will be `true` if the found issue is closed. The you can use `issue_number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
 
 ### Environment variables
 
