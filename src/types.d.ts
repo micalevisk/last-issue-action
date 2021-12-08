@@ -3,7 +3,7 @@ declare type ActionInputs = {
   labels: string[];
 
   /**
-   * Issue state. Can be one of the following strings:
+   * Issue state filter by. Can be one of the following strings:
    *
    * - "open": if you want to look up for open issues only
    * - "closed": if you want to look up for closed issues only

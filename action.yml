@@ -5,6 +5,9 @@ inputs:
   labels:
     description: 'Comma-separated label names that the issue must have.'
     required: true
+  state:
+    description: 'Issue state to filter by. Can be `"open"`, `"closed"` or `"all"`'
+    required: false
 outputs:
   issue_number:
     description: 'The number of the issue found, if any.'

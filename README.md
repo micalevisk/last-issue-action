@@ -4,10 +4,10 @@ GitHub Action to find and output the number of last updated issue that has given
 
 ### Action inputs
 
-| Name            | Description                                                                                                                                                                                                                                                                                        | Default  |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| **\*** `labels` | Comma or newline-separated list of labels that the issue must have                                                                                                                                                                                                                                 |
-| `state`         | Issue state. Can be one of the following strings: <ul><li> <code>"open"</code>: if you want to look up for open issues only </li><li> <code>"closed"</code>: if you want to look up for closed issues only </li><li> <code>"all"</code>: if you want to look up for open or closed ones </li></ul> | `"open"` |
+| Name            | Description                                                                                                                                                                                                                                                                                                  | Default  |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| **\*** `labels` | Comma or newline-separated list of labels that the issue must have                                                                                                                                                                                                                                           |
+| `state`         | Issue state filter by. Can be one of the following strings: <ul><li> <code>"open"</code>: if you want to look up for open issues only </li><li> <code>"closed"</code>: if you want to look up for closed issues only </li><li> <code>"all"</code>: if you want to look up for open or closed ones </li></ul> | `"open"` |
 
 ### Action outputs
 
