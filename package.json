@@ -23,7 +23,7 @@
     "watch/compile": "tsc --watch -p .",
     "clean": "rm -rf dist ; rm -rf bundle",
     "exec": "NODE_ENV=development node -r dotenv/config dist",
-    "preexec:bundle": "npm run compile",
+    "preexec:bundle": "npm run build",
     "exec:bundle": "NODE_ENV=development node -r dotenv/config bundle"
   },
   "dependencies": {
