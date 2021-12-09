@@ -1,4 +1,4 @@
-# Find Last Issue
+# Find Last Issue ![](https://img.badgesize.io/micalevisk/last-issue-action/gh-actions/bundle/index.js.svg?style=flat&color=purple&compression=brotli)
 
 GitHub Action to find and output the number of last updated issue that has given labels and state.
 
