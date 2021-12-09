@@ -5,11 +5,11 @@ declare type ActionInputs = {
   /**
    * Issue state filter by. Can be one of the following strings:
    *
-   * - "open": if you want to look up for open issues only
+   * - "open" (default): if you want to look up for open issues only
    * - "closed": if you want to look up for closed issues only
    * - "all": if you want to look up for open or closed ones
    */
-  state: 'open' | 'closed' | 'all';
+  state?: 'open' | 'closed' | 'all';
 };
 
 declare type ActionOutputs = {
