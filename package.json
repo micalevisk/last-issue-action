@@ -18,7 +18,7 @@
     "format": "prettier --config .prettierrc --write .",
     "prepack": "npm run build",
     "prebuild": "npm run clean && npm run compile",
-    "build": "ncc build dist/index.js -o bundle",
+    "build": "ncc --minify --target es2021 -o bundle build dist/index.js",
     "compile": "tsc -p .",
     "watch/compile": "tsc --watch -p .",
     "clean": "rm -rf dist ; rm -rf bundle",

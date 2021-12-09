@@ -17,4 +17,7 @@ jobs:
           version: 16
       - uses: technote-space/release-github-actions@v7
         with:
+          ## npm-script to build the app
+          BUILD_COMMAND_TARGET: pack
           CLEAN_TARGETS: '.[!.]*,__tests__,docs,src,*.js,*.ts,*.json,*.lock,*.yml,*.yaml,LICENSE,README,dist'
+          DELETE_NODE_MODULES: true

@@ -1,4 +1,4 @@
-import * as core from '@actions/core';
+import { getInput as coreGetInput, setOutput as coreSetOutput, InputOptions } from '@actions/core';
 export { setFailed, error } from '@actions/core';
 
 /**
@@ -9,10 +9,9 @@ export { setFailed, error } from '@actions/core';
  */
 export const getInputAsArray = <Name extends keyof ActionInputs>(
   name: Name,
-  options?: core.InputOptions,
+  options?: InputOptions,
 ) =>
-  core
-    .getInput(name, options)
+  coreGetInput(name, options)
     .split(/[\n,]+/)
     .map((value) => value.trim())
     .filter((val) => val !== '') as ActionInputs[typeof name];
@@ -24,10 +23,8 @@ export const getInputAsArray = <Name extends keyof ActionInputs>(
  *
  * NOTE: This is a type-safe version of `core.setOutput` from `@actions/core`.
  */
-export const getInput = <Name extends keyof ActionInputs>(
-  name: Name,
-  options?: core.InputOptions,
-) => core.getInput(name, options) as ActionInputs[typeof name];
+export const getInput = <Name extends keyof ActionInputs>(name: Name, options?: InputOptions) =>
+  coreGetInput(name, options) as ActionInputs[typeof name];
 
 /**
  * Sets the value of an output.
@@ -35,4 +32,4 @@ export const getInput = <Name extends keyof ActionInputs>(
  * NOTE: This is a type-safe version of `core.setOutput` from `@actions/core`.
  */
 export const setOutput = <Name extends keyof ActionOutputs>(name: Name, value: any) =>
-  core.setOutput(name, value);
+  coreSetOutput(name, value);
