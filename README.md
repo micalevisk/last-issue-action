@@ -32,7 +32,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 
 - name: Find the last open report issue
   id: last_issue
-  uses: micalevisk/find-last-issue@v1
+  uses: micalevisk/last-issue-action@v1.2.2
   with:
     state: open
     ## The issue must have the following labels
@@ -47,7 +47,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 
 - name: Update last updated report issue
   if: ${{ steps.last_issue.outputs.has_found == 'true' }}
-  uses: peter-evans/create-issue-from-file@v3
+  uses: peter-evans/create-issue-from-file@v4
   with:
     title: Foo
     content-filepath: README.md
