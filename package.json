@@ -17,14 +17,15 @@
   "scripts": {
     "format": "prettier --config .prettierrc --write .",
     "prepack": "npm run build",
-    "prebuild": "npm run clean && npm run compile",
+    "prebuild": "npm run compile",
     "build": "ncc --minify --target es2021 -o bundle build dist/index.js",
+    "precompile": "npm run clean",
     "compile": "tsc -p .",
     "watch/compile": "tsc --watch -p .",
-    "clean": "rm -rf dist ; rm -rf bundle",
-    "exec": "NODE_ENV=development node -r dotenv/config dist",
+    "clean": "rimraf dist bundle",
+    "exec": "cross-env NODE_ENV=development node -r dotenv/config dist",
     "preexec:bundle": "npm run build",
-    "exec:bundle": "NODE_ENV=development node -r dotenv/config bundle"
+    "exec:bundle": "cross-env NODE_ENV=development node -r dotenv/config bundle"
   },
   "dependencies": {
     "@actions/core": "^1.7.0",
@@ -33,8 +34,10 @@
   "devDependencies": {
     "@types/node": "^17.0.30",
     "@vercel/ncc": "^0.33.4",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "typescript": "^4.6.4"
   }
 }
