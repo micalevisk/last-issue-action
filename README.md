@@ -32,7 +32,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 
 - name: Find the last open report issue
   id: last_issue
-  uses: micalevisk/last-issue-action@v1.2.2
+  uses: micalevisk/last-issue-action@v1.2
   with:
     state: open
     ## The issue must have the following labels
