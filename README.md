@@ -17,11 +17,15 @@ GitHub Action to find and output the number of last updated issue that has given
 | `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
 | `is_closed`    | Will be `true` if the found issue is closed. The you can use `issue_number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
 
+Note that none of the above will be defined if any error occurs (eg: fetching a repository that doesn't exists).
+
+If `has_found` is `true`, then `issue_number` and `is_closed` will be defined as well.
+
 ### Environment variables
 
-| Name           | Description                                                                                                                                                                | Default                                 |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `GITHUB_TOKEN` | `GITHUB_TOKEN` or a `repo` scoped [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) | `GITHUB_TOKEN` secret created by GitHub |
+| Name           | Description                                                                                                                                                                                                                                                         | Default                                 |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `GITHUB_TOKEN` | `GITHUB_TOKEN` or a [`repo`](https://github.com/settings/tokens/new?scopes=repo:status,repo_deployment,public_repo) scoped [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) | `GITHUB_TOKEN` secret created by GitHub |
 
 ## Example usage
 
@@ -32,7 +36,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 
 - name: Find the last open report issue
   id: last_issue
-  uses: micalevisk/find-last-issue@v1
+  uses: micalevisk/last-issue-action@v1.2
   with:
     state: open
     ## The issue must have the following labels
@@ -47,7 +51,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 
 - name: Update last updated report issue
   if: ${{ steps.last_issue.outputs.has_found == 'true' }}
-  uses: peter-evans/create-issue-from-file@v3
+  uses: peter-evans/create-issue-from-file@v4
   with:
     title: Foo
     content-filepath: README.md
