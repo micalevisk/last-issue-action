@@ -1,12 +1,14 @@
-import { debug, info, warning, error } from '@actions/core';
+import { debug, info, warning as warn, error } from '@actions/core';
 import { Octokit } from '@octokit/rest';
+export type { Octokit } from '@octokit/rest';
 
-export const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-  log: {
-    debug,
-    info,
-    warn: warning,
-    error,
-  },
-});
+export const makeOctokitClient = (auth: string): Octokit =>
+  new Octokit({
+    auth,
+    log: {
+      debug,
+      info,
+      warn,
+      error,
+    },
+  });

@@ -1,14 +1,28 @@
 import * as utils from './utils';
 
+import { makeOctokitClient } from './client';
 import { findLastIssueWith } from './core';
 
-async function main(): Promise<void> {
+interface EnvData {
+  githubToken: string;
+  /** The target GitHub owner and name separated by slash. */
+  githubRepository: string;
+}
+
+async function main({ githubToken, githubRepository }: EnvData): Promise<void> {
   const inputs = {
     labels: utils.getInputAsArray('labels', { required: true, trimWhitespace: true }),
     state: utils.getInput('state', { required: false, trimWhitespace: true }) || 'open',
   };
 
-  const latestReportIssue = await findLastIssueWith(inputs.labels, inputs.state);
+  const octokitClient = makeOctokitClient(githubToken);
+  const [owner, repo] = githubRepository.split('/', 2);
+  const latestReportIssue = await findLastIssueWith(octokitClient, {
+    withLabels: inputs.labels,
+    withState: inputs.state,
+    repositoryOwner: owner,
+    repositoryName: repo,
+  });
 
   let hasFoundSome = false;
 
@@ -23,7 +37,10 @@ async function main(): Promise<void> {
 
 // Check if is running as a script
 if (require.main === module) {
-  main().catch((err) => {
+  main({
+    githubToken: process.env.GITHUB_TOKEN,
+    githubRepository: process.env.GITHUB_REPOSITORY,
+  }).catch((err) => {
     if (err instanceof Error) {
       utils.error(err.message);
     }

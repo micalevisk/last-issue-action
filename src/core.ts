@@ -1,13 +1,26 @@
-import { octokit } from './client.js';
+import type { Octokit } from './client.js';
 
-const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+interface FindOptions {
+  withLabels: string[];
+  withState: 'open' | 'closed' | 'all';
+  repositoryOwner: string;
+  repositoryName: string;
+}
 
 /** */
-export async function findLastIssueWith(labels: string[], state: 'open' | 'closed' | 'all') {
+export async function findLastIssueWith(
+  octokitClient: Octokit,
+  {
+    withLabels: labels,
+    withState: state,
+    repositoryOwner: owner,
+    repositoryName: repo,
+  }: FindOptions,
+) {
   // See https://docs.github.com/en/rest/reference/issues
   const {
     data: [lastIssueFound],
-  } = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+  } = await octokitClient.request('GET /repos/{owner}/{repo}/issues', {
     headers: {
       accept: 'application/vnd.github.v3+json',
     },
