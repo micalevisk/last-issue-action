@@ -19,9 +19,9 @@ GitHub Action to find and output the number of last updated issue that has given
 
 ### Environment variables
 
-| Name           | Description                                                                                                                                                                | Default                                 |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `GITHUB_TOKEN` | `GITHUB_TOKEN` or a `repo` scoped [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) | `GITHUB_TOKEN` secret created by GitHub |
+| Name           | Description                                                                                                                                                                                                                                                         | Default                                 |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `GITHUB_TOKEN` | `GITHUB_TOKEN` or a [`repo`](https://github.com/settings/tokens/new?scopes=repo:status,repo_deployment,public_repo) scoped [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) | `GITHUB_TOKEN` secret created by GitHub |
 
 ## Example usage
 
