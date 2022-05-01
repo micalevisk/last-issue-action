@@ -17,6 +17,10 @@ GitHub Action to find and output the number of last updated issue that has given
 | `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
 | `is_closed`    | Will be `true` if the found issue is closed. The you can use `issue_number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
 
+Note that none of the above will be defined if any error occurs (eg: fetching a repository that doesn't exists).
+
+If `has_found` is `true`, then `issue_number` and `is_closed` will be defined as well.
+
 ### Environment variables
 
 | Name           | Description                                                                                                                                                                                                                                                         | Default                                 |
