@@ -23,9 +23,9 @@ If `has_found` is `true`, then `issue_number` and `is_closed` will be defined as
 
 ### Environment variables
 
-| Name           | Description                                                                                                                                                                                                                                                         | Default                                 |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `GITHUB_TOKEN` | `GITHUB_TOKEN` or a [`repo`](https://github.com/settings/tokens/new?scopes=repo:status,repo_deployment,public_repo) scoped [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) | `GITHUB_TOKEN` secret created by GitHub |
+| Name           | Description                                                                                                                                                                                                                                                         | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `GITHUB_TOKEN` | `GITHUB_TOKEN` or a [`repo`](https://github.com/settings/tokens/new?scopes=repo:status,repo_deployment,public_repo) scoped [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) | -       |
 
 ## Example usage
 
@@ -44,7 +44,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
       report
       automated issue
   env:
-    ## Optional since it uses the `GITHUB_TOKEN` created by GitHub by default
+    ## Mandatory for private repositories. Note that you don't need to create the `GITHUB_TOKEN` secret in your side
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 - run: echo ${{ steps.last_issue.outputs.issue_number }}
