@@ -28,16 +28,16 @@
     "exec:bundle": "cross-env NODE_ENV=development node -r dotenv/config bundle"
   },
   "dependencies": {
-    "@actions/core": "^1.7.0",
+    "@actions/core": "^1.9.0",
     "@octokit/rest": "^18.12.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.30",
-    "@vercel/ncc": "^0.33.4",
+    "@types/node": "^18.0.1",
+    "@vercel/ncc": "^0.34.0",
     "cross-env": "^7.0.3",
-    "dotenv": "^16.0.0",
-    "prettier": "^2.6.2",
+    "dotenv": "^16.0.1",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.4"
   }
 }
