@@ -31,7 +31,7 @@ export async function findLastIssueWith(
     sort: 'updated',
     direction: 'desc',
     per_page: 1,
-    limit: 1,
+    page: 1,
   });
 
   return lastIssueFound;
