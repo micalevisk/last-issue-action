@@ -24,7 +24,6 @@
     "watch/compile": "tsc --watch -p .",
     "clean": "rimraf dist bundle",
     "exec": "cross-env NODE_ENV=development node -r dotenv/config dist",
-    "preexec:bundle": "npm run build",
     "exec:bundle": "cross-env NODE_ENV=development node -r dotenv/config bundle"
   },
   "dependencies": {
