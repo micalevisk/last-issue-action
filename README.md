@@ -36,15 +36,13 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 
 - name: Find the last open report issue
   id: last_issue
-  uses: micalevisk/last-issue-action@v1.2
+  uses: micalevisk/last-issue-action@v2
   with:
     state: open
-    ## The issue must have the following labels
+    # Find the last updated open issue that has these labels:
     labels: |
       report
       automated issue
-
-- run: echo ${{ steps.last_issue.outputs.issue_number }}
 
 - name: Update last updated report issue
   if: ${{ steps.last_issue.outputs.has_found == 'true' }}
@@ -52,7 +50,11 @@ You can use this action along with [create-issue-from-file](https://github.com/p
   with:
     title: Foo
     content-filepath: README.md
+    # Update an existing issue if one was found (issue_number),
+    # otherwise an empty value creates a new issue:
     issue-number: ${{ steps.last_issue.outputs.issue_number }}
+    # Add a label(s) that `last-issue` can use to find this issue,
+    # and any other relevant labels for the issue itself:
     labels: |
       report
       automated issue
