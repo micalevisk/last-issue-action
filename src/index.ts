@@ -5,12 +5,10 @@ import { fetchLastIssueInfo } from './fetch-last-issue-info';
 if (require.main === module) {
   fetchLastIssueInfo({
     inputs: {
+      githubRepository: utils.getInput('gh-repository', { required: true }),
+      githubToken: utils.getInput('gh-token', { required: true }),
       labels: utils.getInputAsArray('labels', { required: true, trimWhitespace: true }),
       state: utils.getInput('state', { required: false, trimWhitespace: true }) || 'open',
-    },
-    environment: {
-      githubToken: process.env.GITHUB_TOKEN,
-      githubRepository: process.env.GITHUB_REPOSITORY,
     },
   })
     .then((outputData) => {

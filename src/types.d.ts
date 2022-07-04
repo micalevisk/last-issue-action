@@ -1,4 +1,10 @@
 declare type ActionInputs = {
+  /** The github token providing authorization to query issues for the repository. */
+  githubToken: string;
+
+  /** The target GitHub owner and name separated by slash. */
+  githubRepository: string;
+
   /** Comma or newline-separated list of labels that the issue must have. */
   labels: string[];
 
