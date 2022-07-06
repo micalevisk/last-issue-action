@@ -1,5 +1,5 @@
 declare type ActionInputs = {
-  /** The github token providing authorization to query issues for the repository. */
+  /** The GitHub token providing authorization to query issues for the repository. */
   githubToken: string;
 
   /** The target GitHub owner and name separated by slash. */
@@ -19,15 +19,15 @@ declare type ActionInputs = {
 };
 
 declare type ActionOutputs = {
-  /** The number of the issue found, if any. */
+  /** The number of the issue found, otherwise empty. */
   issueNumber: number;
 
-  /** Response status. Will be `true` if some issue was found. `false` otherwise. */
+  /** Response status. Will be `true` if some issue was found, otherwise `false`. */
   hasFound: boolean;
 
   /**
-   * Will be `true` if the found issue is closed. `false` otherwise.
-   * The you can use `issue-number` to open it again with [another GitHub Action](https://github.com/marketplace/actions).
+   * Will be `true` if the issue found is closed, otherwise `false`.
+   * Then you can use `issue-number` to open it again with [another GitHub Action](https://github.com/marketplace/actions).
    */
   isClosed: boolean;
 };

@@ -17,11 +17,11 @@ GitHub Action to find and output the number of last updated issue that has given
 
 ### Action outputs
 
-| Name           | Description                                                                                                                                                        |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `issue-number` | The number of the issue found, if any.                                                                                                                             |
-| `has-found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
-| `is-closed`    | Will be `true` if the found issue is closed. The you can use `issue-number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
+| Name           | Description                                                                                                                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `issue-number` | The number of the issue found, otherwise empty.                                                                                                                                        |
+| `has-found`    | Response status. Will be `true` if some issue was found, otherwise `false`.                                                                                                            |
+| `is-closed`    | Will be `true` if the issue found is closed, otherwise `false`. Then you can use `issue-number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
 
 Note that none of the above will be defined if any error occurs (eg: fetching a repository that doesn't exists).
 

@@ -6,7 +6,7 @@ inputs:
     description: 'The target GitHub owner and name separated by slash. For example: `micalevisk/last-issue-action`.'
     default: ${{ github.repository }}
   gh-token:
-    description: 'The github token providing at least `issues: read` authorization to the repository.'
+    description: 'The GitHub token providing at least `issues: read` authorization to the repository.'
     default: ${{ github.token }}
   labels:
     description: 'Comma-separated label names that the issue must have.'
@@ -16,11 +16,11 @@ inputs:
     required: false
 outputs:
   issue-number:
-    description: 'The number of the issue found, if any.'
+    description: 'The number of the issue found, otherwise empty.'
   has-found:
-    description: 'Response status. Will be `true` if some issue was found. `false` otherwise.'
+    description: 'Response status. Will be `true` if some issue was found, otherwise `false`.'
   is-closed:
-    description: 'Will be `true` if the found issue is closed. `false` otherwise.'
+    description: 'Will be `true` if the issue found is closed, otherwise `false`.'
 runs:
   using: 'node16'
   main: 'bundle/index.js'
