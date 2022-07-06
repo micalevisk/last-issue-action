@@ -19,13 +19,13 @@ GitHub Action to find and output the number of last updated issue that has given
 
 | Name           | Description                                                                                                                                                        |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `issue_number` | The number of the issue found, if any.                                                                                                                             |
-| `has_found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
-| `is_closed`    | Will be `true` if the found issue is closed. The you can use `issue_number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
+| `issue-number` | The number of the issue found, if any.                                                                                                                             |
+| `has-found`    | Response status. Will be `true` if some issue was found. `false` otherwise.                                                                                        |
+| `is-closed`    | Will be `true` if the found issue is closed. The you can use `issue-number` to open it again with [another GitHub Action](https://github.com/marketplace/actions). |
 
 Note that none of the above will be defined if any error occurs (eg: fetching a repository that doesn't exists).
 
-If `has_found` is `true`, then `issue_number` and `is_closed` will be defined as well.
+If `has-found` is `true`, then `issue-number` and `is-closed` will be defined as well.
 
 ## Example usage
 
@@ -35,7 +35,7 @@ You can use this action along with [create-issue-from-file](https://github.com/p
 # ...
 
 - name: Find the last open report issue
-  id: last_issue
+  id: last-issue
   uses: micalevisk/last-issue-action@v2
   with:
     state: open
@@ -45,14 +45,14 @@ You can use this action along with [create-issue-from-file](https://github.com/p
       automated issue
 
 - name: Update last updated report issue
-  if: ${{ steps.last_issue.outputs.has_found == 'true' }}
+  if: ${{ steps.last-issue.outputs.has-found == 'true' }}
   uses: peter-evans/create-issue-from-file@v4
   with:
     title: Foo
     content-filepath: README.md
-    # Update an existing issue if one was found (issue_number),
+    # Update an existing issue if one was found (issue-number),
     # otherwise an empty value creates a new issue:
-    issue-number: ${{ steps.last_issue.outputs.issue_number }}
+    issue-number: ${{ steps.last-issue.outputs.issue-number }}
     # Add a label(s) that `last-issue` can use to find this issue,
     # and any other relevant labels for the issue itself:
     labels: |

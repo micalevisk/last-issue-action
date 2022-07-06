@@ -13,11 +13,11 @@ if (require.main === module) {
   })
     .then((outputData) => {
       if (outputData.hasFound) {
-        utils.setOutput('issue_number', outputData.issueNumber);
-        utils.setOutput('is_closed', outputData.isClosed);
+        utils.setOutput('issue-number', outputData.issueNumber);
+        utils.setOutput('is-closed', outputData.isClosed);
       }
 
-      utils.setOutput('has_found', outputData.hasFound);
+      utils.setOutput('has-found', outputData.hasFound);
     })
     .catch((err) => {
       if (err instanceof Error) {
