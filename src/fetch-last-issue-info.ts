@@ -3,9 +3,9 @@ import { findLastIssueWith } from './core';
 
 interface IssueFilters {
   githubToken: string;
-  /* The target GitHub owner and name separated by slash. */
+  /** The target GitHub owner and name separated by slash. */
   githubRepository: string;
-  /* Supported issue filters. */
+  /** Supported issue filters. */
   labels: string[];
   state: 'open' | 'closed' | 'all';
 }
