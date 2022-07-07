@@ -2,10 +2,10 @@ name: 'Find Last Issue'
 author: 'Micael Levi L. C.'
 description: 'GitHub Action to find and export the number of last updated issue whithin some repository that has given labels.'
 inputs:
-  gh-repository:
+  repository:
     description: 'The target GitHub owner and name separated by slash. For example: `micalevisk/last-issue-action`.'
     default: ${{ github.repository }}
-  gh-token:
+  token:
     description: 'The GitHub token providing at least `issues: read` authorization to the repository.'
     default: ${{ github.token }}
   labels:
