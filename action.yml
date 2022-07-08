@@ -2,6 +2,12 @@ name: 'Find Last Issue'
 author: 'Micael Levi L. C.'
 description: 'GitHub Action to find and export the number of last updated issue whithin some repository that has given labels.'
 inputs:
+  repository:
+    description: 'The target GitHub owner and name separated by slash. For example: `micalevisk/last-issue-action`.'
+    default: ${{ github.repository }}
+  token:
+    description: 'The GitHub token providing at least `issues: read` authorization to the repository.'
+    default: ${{ github.token }}
   labels:
     description: 'Comma-separated label names that the issue must have.'
     required: true
@@ -9,12 +15,12 @@ inputs:
     description: 'Issue state to filter by. Can be `"open"`, `"closed"` or `"all"`'
     required: false
 outputs:
-  issue_number:
-    description: 'The number of the issue found, if any.'
-  has_found:
-    description: 'Response status. Will be `true` if some issue was found. `false` otherwise.'
-  is_closed:
-    description: 'Will be `true` if the found issue is closed. `false` otherwise.'
+  issue-number:
+    description: 'The number of the issue found, otherwise empty.'
+  has-found:
+    description: 'Response status. Will be `true` if some issue was found, otherwise `false`.'
+  is-closed:
+    description: 'Will be `true` if the issue found is closed, otherwise `false`.'
 runs:
   using: 'node16'
   main: 'bundle/index.js'
