@@ -5,21 +5,19 @@ import { fetchLastIssueInfo } from './fetch-last-issue-info';
 if (require.main === module) {
   fetchLastIssueInfo({
     inputs: {
+      githubRepository: utils.getInput('repository', { required: true }),
+      githubToken: utils.getInput('token', { required: process.env.NODE_ENV !== 'development' }),
       labels: utils.getInputAsArray('labels', { required: true, trimWhitespace: true }),
       state: utils.getInput('state', { required: false, trimWhitespace: true }) || 'open',
-    },
-    environment: {
-      githubToken: process.env.GITHUB_TOKEN,
-      githubRepository: process.env.GITHUB_REPOSITORY,
     },
   })
     .then((outputData) => {
       if (outputData.hasFound) {
-        utils.setOutput('issue_number', outputData.issueNumber);
-        utils.setOutput('is_closed', outputData.isClosed);
+        utils.setOutput('issue-number', outputData.issueNumber);
+        utils.setOutput('is-closed', outputData.isClosed);
       }
 
-      utils.setOutput('has_found', outputData.hasFound);
+      utils.setOutput('has-found', outputData.hasFound);
     })
     .catch((err) => {
       if (err instanceof Error) {
