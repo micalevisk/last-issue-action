@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - uses: technote-space/release-github-actions@v7
+          node-version: 18
+      - uses: technote-space/release-github-actions@v8
         with:
           CLEAN_TARGETS: '.[!.]*,__tests__,docs,src,*.js,*.ts,*.json,*.lock,*.yml,*.yaml,LICENSE,README,dist'
           DELETE_NODE_MODULES: true

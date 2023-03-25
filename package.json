@@ -1,7 +1,7 @@
 {
   "name": "last-issue-action",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "GitHub Action to find and export the number of last updated issue whithin some repository that has given labels.",
   "type": "commonjs",
   "author": "Micael Levi L. C. (https://micalevisk.github.io)",
@@ -27,16 +27,16 @@
     "exec:bundle": "cross-env NODE_ENV=development node -r dotenv/config bundle"
   },
   "dependencies": {
-    "@actions/core": "^1.9.1",
-    "@octokit/rest": "^18.12.0"
+    "@actions/core": "^1.10.0",
+    "@octokit/rest": "^19.0.7"
   },
   "devDependencies": {
-    "@types/node": "^18.0.1",
-    "@vercel/ncc": "^0.34.0",
+    "@types/node": "^18.15.8",
+    "@vercel/ncc": "^0.36.1",
     "cross-env": "^7.0.3",
-    "dotenv": "^16.0.1",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.7.4"
+    "dotenv": "^16.0.3",
+    "prettier": "^2.8.7",
+    "rimraf": "^4.4.1",
+    "typescript": "^4.9.5"
   }
 }
