@@ -1,6 +1,7 @@
 name: Release Action on new Git Tags
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*'
