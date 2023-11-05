@@ -18,12 +18,7 @@ export async function findLastIssueWith(
   }: FindOptions,
 ) {
   // See https://docs.github.com/en/rest/reference/issues
-  const {
-    data: [lastIssueFound],
-  } = await octokitClient.request('GET /repos/{owner}/{repo}/issues', {
-    headers: {
-      accept: 'application/vnd.github.v3+json',
-    },
+  const { data } = await octokitClient.rest.issues.list({
     owner,
     repo,
     state,
@@ -33,6 +28,5 @@ export async function findLastIssueWith(
     per_page: 1,
     page: 1,
   });
-
-  return lastIssueFound;
+  return data[0];
 }
