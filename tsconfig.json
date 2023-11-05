@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "removeComments": true,
     "skipLibCheck": true,
-    "typeRoots": ["types.d.ts", "global.d.ts"],
+    "typeRoots": ["types.d.ts", "global.d.ts", "node_modules/@types"],
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"]
