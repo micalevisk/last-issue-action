@@ -6,7 +6,7 @@ if (require.main === module) {
   fetchLastIssueInfo({
     inputs: {
       githubRepository: utils.getInput('repository', { required: true }),
-      githubToken: utils.getInput('token', { required: true }),
+      githubToken: utils.getInput('token', { required: process.env.NODE_ENV !== 'development' }),
       labels: utils.getInputAsArray('labels', { required: true, trimWhitespace: true }),
       state: utils.getInput('state', { required: false, trimWhitespace: true }) || 'open',
     },
