@@ -1,10 +1,10 @@
 import { debug, info, warning as warn, error } from '@actions/core';
-import * as github from '@actions/github';
+import { Octokit } from '@octokit/rest';
+export type { Octokit } from '@octokit/rest';
 
-export type Octokit = ReturnType<typeof makeOctokitClient>;
-
-export const makeOctokitClient = (auth: string) =>
-  github.getOctokit(auth, {
+export const makeOctokitClient = (auth: string): Octokit =>
+  new Octokit({
+    auth,
     log: {
       debug,
       info,
