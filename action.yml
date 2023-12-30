@@ -22,7 +22,7 @@ outputs:
   is-closed:
     description: 'Will be `true` if the issue found is closed, otherwise `false`.'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'bundle/index.js'
 branding:
   icon: 'crosshair'
